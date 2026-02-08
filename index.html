@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Complaint Management System</title>
+    
+    <!-- Google Fonts - Distinctive Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-shield-alt"></i>
+                <span>ComplaintHub</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="active">Submit Complaint</a>
+                <a href="#track-section" onclick="showTrackingSection()">Track Complaint</a>
+                <a href="admin/login.html" class="admin-link">
+                    <i class="fas fa-user-shield"></i> Admin
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Your Voice Matters</h1>
+                <p class="hero-subtitle">Submit your complaints securely and track their resolution in real-time</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalComplaints">0</span>
+                        <span class="stat-label">Total Complaints</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="resolvedComplaints">0</span>
+                        <span class="stat-label">Resolved</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24h</span>
+                        <span class="stat-label">Avg Response</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Complaint Submission Form -->
+            <section id="submit-section" class="form-section">
+                <div class="section-header">
+                    <h2 class="section-title">Submit Your Complaint</h2>
+                    <p class="section-description">Fill out the form below and we'll get back to you as soon as possible</p>
+                </div>
+
+                <form id="complaintForm" class="complaint-form">
+                    <!-- Name Field -->
+                    <div class="form-group">
+                        <label for="userName" class="form-label">
+                            <i class="fas fa-user"></i> Your Name
+                        </label>
+                        <input 
+                            type="text" 
+                            id="userName" 
+                            class="form-input" 
+                            placeholder="Enter your full name"
+                            required
+                        >
+                    </div>
+
+                    <!-- Email Field -->
+                    <div class="form-group">
+                        <label for="userEmail" class="form-label">
+                            <i class="fas fa-envelope"></i> Email Address
+                        </label>
+                        <input 
+                            type="email" 
+                            id="userEmail" 
+                            class="form-input" 
+                            placeholder="your.email@example.com"
+                            required
+                        >
+                    </div>
+
+                    <!-- Category Field -->
+                    <div class="form-group">
+                        <label for="category" class="form-label">
+                            <i class="fas fa-tags"></i> Category
+                        </label>
+                        <select id="category" class="form-select" required>
+                            <option value="">Select a category</option>
+                            <option value="Technical Issue">Technical Issue</option>
+                            <option value="Service Quality">Service Quality</option>
+                            <option value="Billing">Billing</option>
+                            <option value="Product Defect">Product Defect</option>
+                            <option value="Customer Support">Customer Support</option>
+                            <option value="Delivery">Delivery</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- Priority Field -->
+                    <div class="form-group">
+                        <label for="priority" class="form-label">
+                            <i class="fas fa-exclamation-circle"></i> Priority Level
+                        </label>
+                        <div class="priority-selector">
+                            <label class="priority-option low">
+                                <input type="radio" name="priority" value="Low" required>
+                                <span class="priority-badge">
+                                    <i class="fas fa-flag"></i> Low
+                                </span>
+                            </label>
+                            <label class="priority-option medium">
+                                <input type="radio" name="priority" value="Medium">
+                                <span class="priority-badge">
+                                    <i class="fas fa-flag"></i> Medium
+                                </span>
+                            </label>
+                            <label class="priority-option high">
+                                <input type="radio" name="priority" value="High">
+                                <span class="priority-badge">
+                                    <i class="fas fa-flag"></i> High
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Description Field -->
+                    <div class="form-group">
+                        <label for="description" class="form-label">
+                            <i class="fas fa-comment-alt"></i> Complaint Description
+                        </label>
+                        <textarea 
+                            id="description" 
+                            class="form-textarea" 
+                            rows="6" 
+                            placeholder="Describe your complaint in detail..."
+                            required
+                        ></textarea>
+                        <div class="char-counter">
+                            <span id="charCount">0</span> / 1000 characters
+                        </div>
+                    </div>
+
+                    <!-- File Upload -->
+                    <div class="form-group">
+                        <label for="fileUpload" class="form-label">
+                            <i class="fas fa-paperclip"></i> Attach Evidence (Optional)
+                        </label>
+                        <div class="file-upload-wrapper">
+                            <input 
+                                type="file" 
+                                id="fileUpload" 
+                                class="file-input" 
+                                accept="image/*"
+                            >
+                            <label for="fileUpload" class="file-upload-label">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span>Click to upload or drag and drop</span>
+                                <small>PNG, JPG, JPEG (MAX. 5MB)</small>
+                            </label>
+                            <div id="filePreview" class="file-preview"></div>
+                        </div>
+                    </div>
+
+                    <!-- Anonymous Option -->
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="anonymous" class="form-checkbox">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">
+                                <i class="fas fa-user-secret"></i> Submit anonymously
+                            </span>
+                        </label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="submitBtn">
+                            <span class="btn-text">
+                                <i class="fas fa-paper-plane"></i> Submit Complaint
+                            </span>
+                            <span class="btn-loader">
+                                <i class="fas fa-spinner fa-spin"></i> Processing...
+                            </span>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Success Message -->
+                <div id="successMessage" class="success-message">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Complaint Submitted Successfully!</h3>
+                    <p>Your complaint ID is: <strong id="complaintId"></strong></p>
+                    <p class="success-note">Save this ID to track your complaint status</p>
+                    <button onclick="resetForm()" class="btn btn-secondary">
+                        Submit Another Complaint
+                    </button>
+                </div>
+            </section>
+
+            <!-- Tracking Section -->
+            <section id="track-section" class="tracking-section" style="display: none;">
+                <div class="section-header">
+                    <h2 class="section-title">Track Your Complaint</h2>
+                    <p class="section-description">Enter your complaint ID to check the status</p>
+                </div>
+
+                <div class="tracking-form-wrapper">
+                    <form id="trackingForm" class="tracking-form">
+                        <div class="tracking-input-group">
+                            <input 
+                                type="text" 
+                                id="trackingId" 
+                                class="tracking-input" 
+                                placeholder="Enter Complaint ID (e.g., CMP-123456)"
+                                required
+                            >
+                            <button type="submit" class="btn btn-track">
+                                <i class="fas fa-search"></i> Track
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Tracking Results -->
+                    <div id="trackingResults" class="tracking-results"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>ComplaintHub</span>
+                </div>
+                <p class="footer-text">Professional complaint management system built with care</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <!-- Firebase Configuration -->
+    <script src="js/firebase-config.js"></script>
+
+    <!-- Main JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
