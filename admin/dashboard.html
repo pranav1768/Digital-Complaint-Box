@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - ComplaintHub</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body class="admin-dashboard-body">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-brand">
+                <i class="fas fa-shield-alt"></i>
+                <span>ComplaintHub</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" onclick="showSection('dashboard')">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#" class="nav-item" onclick="showSection('complaints')">
+                <i class="fas fa-list"></i>
+                <span>All Complaints</span>
+            </a>
+            <a href="#" class="nav-item" onclick="showSection('high-priority')">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>High Priority</span>
+                <span class="badge" id="highPriorityBadge">0</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="admin-profile">
+                <div class="admin-avatar">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="admin-info">
+                    <span class="admin-name" id="adminName">Admin</span>
+                    <span class="admin-email" id="adminEmail"></span>
+                </div>
+            </div>
+            <button onclick="logout()" class="btn btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <h1 class="page-title">Admin Dashboard</h1>
+                <p class="page-subtitle">Manage and track all complaints</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-icon" onclick="refreshData()" title="Refresh">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard-section" class="dashboard-section">
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon blue">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Total Complaints</span>
+                        <span class="stat-value" id="totalComplaintsCount">0</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon yellow">
+                        <i class="fas fa-hourglass-half"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Pending</span>
+                        <span class="stat-value" id="pendingCount">0</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon orange">
+                        <i class="fas fa-spinner"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">In Progress</span>
+                        <span class="stat-value" id="inProgressCount">0</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon green">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Resolved</span>
+                        <span class="stat-value" id="resolvedCount">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-section">
+                <h3 class="section-heading">Filter Complaints</h3>
+                <div class="filters-grid">
+                    <select id="priorityFilter" class="filter-select" onchange="applyFilters()">
+                        <option value="">All Priorities</option>
+                        <option value="High">High Priority</option>
+                        <option value="Medium">Medium Priority</option>
+                        <option value="Low">Low Priority</option>
+                    </select>
+
+                    <select id="statusFilter" class="filter-select" onchange="applyFilters()">
+                        <option value="">All Status</option>
+                        <option value="Pending">Pending</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Resolved">Resolved</option>
+                    </select>
+
+                    <select id="categoryFilter" class="filter-select" onchange="applyFilters()">
+                        <option value="">All Categories</option>
+                        <option value="Technical Issue">Technical Issue</option>
+                        <option value="Service Quality">Service Quality</option>
+                        <option value="Billing">Billing</option>
+                        <option value="Product Defect">Product Defect</option>
+                        <option value="Customer Support">Customer Support</option>
+                        <option value="Delivery">Delivery</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <button class="btn btn-secondary" onclick="clearFilters()">
+                        <i class="fas fa-times"></i> Clear Filters
+                    </button>
+                </div>
+            </div>
+
+            <!-- Complaints Table -->
+            <div class="table-section">
+                <h3 class="section-heading">Recent Complaints</h3>
+                <div class="table-wrapper">
+                    <table class="complaints-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="complaintsTableBody">
+                            <tr>
+                                <td colspan="7" class="loading-cell">
+                                    <i class="fas fa-spinner fa-spin"></i> Loading complaints...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Complaint Detail Modal -->
+    <div id="complaintModal" class="modal">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 class="modal-title">Complaint Details</h2>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be dynamically loaded -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+
+    <!-- Firebase Configuration -->
+    <script src="../js/firebase-config.js"></script>
+
+    <!-- Admin Dashboard Script -->
+    <script src="../js/admin-dashboard.js"></script>
+</body>
+</html>
