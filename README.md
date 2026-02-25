@@ -374,13 +374,6 @@ Want to impress even more? Add:
 - [ ] Dark mode toggle
 - [ ] Multiple languages
 
----
-
-## 📄 License
-
-Free to use for college projects, portfolio, and learning!
-
-
 
 ## 🙏 Credits
 
