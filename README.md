@@ -385,8 +385,5 @@ Built as an educational project for students learning full-stack development.
 
 **Questions?** Check the documentation files or Google it - that's how developers learn! 💻
 
----
-
-**Made with ❤️ for college students**
 
 **Last Updated:** February 2026
