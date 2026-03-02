@@ -341,8 +341,28 @@ function handleAnonymousToggle(e) {
 // SHOW TRACKING SECTION
 // ============================================
 function showTrackingSection() {
+    // Hide submit section, show tracking section
     document.getElementById('submit-section').style.display = 'none';
     document.getElementById('track-section').style.display = 'block';
+    
+    // Update navigation active states
+    const navLinks = document.querySelectorAll('.nav-links a:not(.admin-link)');
+    navLinks.forEach(link => link.classList.remove('active'));
+    navLinks[1].classList.add('active'); // Track Complaint is the second link
+}
+
+// ============================================
+// SHOW SUBMIT SECTION (Go back to submit form)
+// ============================================
+function showSubmitSection() {
+    // Show submit section, hide tracking section
+    document.getElementById('submit-section').style.display = 'block';
+    document.getElementById('track-section').style.display = 'none';
+    
+    // Update navigation active states
+    const navLinks = document.querySelectorAll('.nav-links a:not(.admin-link)');
+    navLinks.forEach(link => link.classList.remove('active'));
+    navLinks[0].classList.add('active'); // Submit Complaint is the first link
 }
 
 // ============================================
