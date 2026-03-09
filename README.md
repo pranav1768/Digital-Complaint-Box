@@ -383,5 +383,4 @@ Built as an educational project for students learning full-stack development.
 
 **Good luck with your project! 🎉**
 
-**Questions?** Check the documentation files or Google it - that's how developers learn! 💻
 
