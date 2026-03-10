@@ -346,7 +346,6 @@ Your site will be live at: `https://your-project.web.app`
 - ⚠️ Enable proper authentication rules
 - ⚠️ Monitor Firebase usage quotas
 
----
 
 ## 🎓 Grading Rubric Coverage
 
