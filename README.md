@@ -329,7 +329,7 @@ Your site will be live at: `https://your-project.web.app`
 - **CODE_EXPLANATION.md** - Code breakdown
 - **TROUBLESHOOTING.md** - Solutions to problems
 
--
+
 
 ## ⚠️ Important Notes
 
