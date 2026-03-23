@@ -320,7 +320,6 @@ Your site will be live at: `https://your-project.web.app`
 - Google the error message
 
 
-
 ## 📚 Documentation Files
 
 - **README.md** (this file) - Quick start guide
