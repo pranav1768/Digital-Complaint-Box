@@ -306,7 +306,6 @@ Your site will be live at: `https://your-project.web.app`
 6. **Customize It** - Change colors/name to make it unique
 
 
-
 ## 🤔 Need Help?
 
 **Check these files:**
