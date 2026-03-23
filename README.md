@@ -361,7 +361,6 @@ Your site will be live at: `https://your-project.web.app`
 | Innovation | Email notifications, tracking system |
 
 
-
 ## 🚀 Next Level Features (Extra Credit!)
 
 Want to impress even more? Add:
