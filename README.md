@@ -330,7 +330,6 @@ Your site will be live at: `https://your-project.web.app`
 - **TROUBLESHOOTING.md** - Solutions to problems
 
 
-
 ## ⚠️ Important Notes
 
 **Before Submitting:**
