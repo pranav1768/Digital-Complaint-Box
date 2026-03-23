@@ -378,8 +378,6 @@ Want to impress even more? Add:
 
 Built as an educational project for students learning full-stack development.
 
-
-
 **Good luck with your project! 🎉**
 
 
