@@ -294,7 +294,6 @@ Your site will be live at: `https://your-project.web.app`
 2. Drag and drop your project folder
 3. Done! Live in 30 seconds
 
--
 
 ## 💡 Tips for College Projects
 
