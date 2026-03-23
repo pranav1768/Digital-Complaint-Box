@@ -319,7 +319,7 @@ Your site will be live at: `https://your-project.web.app`
 - Check Firebase Console for database/auth issues
 - Google the error message
 
--
+
 
 ## 📚 Documentation Files
 
