@@ -305,7 +305,7 @@ Your site will be live at: `https://your-project.web.app`
 5. **Know Your Code** - Be ready to explain how it works
 6. **Customize It** - Change colors/name to make it unique
 
---
+-
 
 ## 🤔 Need Help?
 
