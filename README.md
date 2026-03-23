@@ -360,7 +360,7 @@ Your site will be live at: `https://your-project.web.app`
 | Documentation | Complete guides included |
 | Innovation | Email notifications, tracking system |
 
---
+-
 
 ## 🚀 Next Level Features (Extra Credit!)
 
