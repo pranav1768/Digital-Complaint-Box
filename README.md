@@ -285,7 +285,7 @@ firebase init hosting
 
 # Deploy
 firebase deploy
-```
+``
 
 Your site will be live at: `https://your-project.web.app`
 
